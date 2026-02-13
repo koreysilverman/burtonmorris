@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burton Morris | Pop Art Iconography</title>
+<link rel="icon" type="image/png" href="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1570835969813-XAOHP3V1UT97FAUCRXZF/KERNALlogo.png?format=100w">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{
+--r:#E51A2C;--y:#FFD400;--b:#0057B8;--g:#00A650;--o:#FF6B00;--pk:#FF3399;--cy:#00D4FF;--lv:#9B59B6;
+--blk:#0A0A0A;--wh:#FAFAFA;--cr:#FFF8E7;
+--f1:'Bebas Neue',sans-serif;--f2:'Permanent Marker',cursive;--f3:'Outfit',sans-serif;
+--pop:cubic-bezier(.34,1.56,.64,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden;scroll-behavior:smooth}
+body{font-family:var(--f3);color:var(--blk);overflow-x:hidden;cursor:none;background:var(--cr)}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+
+/* CURSOR */
+#kC{position:fixed;width:38px;height:38px;pointer-events:none;z-index:100000;transform:translate(-50%,-50%);transition:width .25s var(--pop),height .25s var(--pop);filter:drop-shadow(0 3px 10px rgba(0,0,0,.4))}
+#kC.h{width:60px;height:60px;filter:drop-shadow(0 5px 20px rgba(229,26,44,.5)) brightness(1.15)}
+.kp{position:fixed;pointer-events:none;z-index:99998}
+#kBg{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.bk{position:absolute;opacity:0;animation:bkA 4s ease-out forwards;pointer-events:none}
+@keyframes bkA{0%{opacity:0;transform:scale(0) rotate(0) translateY(0)}12%{opacity:.18;transform:scale(1.3) rotate(40deg) translateY(-15px)}30%{opacity:.12;transform:scale(1) rotate(90deg) translateY(-40px)}100%{opacity:0;transform:scale(.4) rotate(200deg) translateY(-220px)}}
+
+/* RAINBOW BARS */
+.rb{height:8px;background:linear-gradient(90deg,var(--r),var(--o),var(--y),var(--g),var(--cy),var(--b),var(--lv),var(--pk),var(--r));background-size:300% 100%;animation:gd 3s linear infinite}
+.rb.thick{height:14px}
+@keyframes gd{0%{background-position:0 50%}100%{background-position:300% 50%}}
+
+/* LOADER */
+.ld{position:fixed;inset:0;z-index:50000;background:linear-gradient(135deg,var(--r),var(--o),var(--y));display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s}
+.ld.go{opacity:0;visibility:hidden;pointer-events:none}
+.ld-k{width:90px;animation:ks 1.2s ease-in-out infinite}
+@keyframes ks{0%{transform:scale(1) rotate(0)}25%{transform:scale(1.2) rotate(90deg)}50%{transform:scale(1) rotate(180deg)}75%{transform:scale(1.2) rotate(270deg)}100%{transform:scale(1) rotate(360deg)}}
+.ld-t{font-family:var(--f1);font-size:3rem;letter-spacing:.3em;color:var(--blk);margin-top:1.5rem}
+.ld-bar{width:240px;height:6px;background:rgba(0,0,0,.15);margin-top:2rem;border-radius:3px;overflow:hidden}
+.ld-fill{height:100%;width:0;background:var(--blk);transition:width .15s}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:9000;padding:.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(255,248,231,.85);backdrop-filter:blur(16px);border-bottom:4px solid var(--blk)}
+.nL{display:flex;align-items:center;gap:.6rem}
+.nL img{width:34px;transition:transform .3s var(--pop)}
+.nL img:hover{transform:rotate(12deg) scale(1.15)}
+.nL span{font-family:var(--f1);font-size:1.35rem;letter-spacing:.2em;color:var(--blk)}
+.nR{display:flex;gap:1.5rem;list-style:none;align-items:center}
+.nR a{font-family:var(--f1);font-size:.85rem;letter-spacing:.12em;color:var(--blk);position:relative;padding:.3rem 0}
+.nR a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--r);transition:width .3s var(--pop)}
+.nR a:hover::after{width:100%}
+.nR .shop-btn{background:var(--r);color:#fff;padding:.45rem 1.1rem;border:3px solid var(--blk);font-weight:700;transition:all .3s var(--pop)}
+.nR .shop-btn:hover{background:var(--y);color:var(--blk);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--blk)}
+.nR .shop-btn::after{display:none}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}.burger span{width:28px;height:2px;background:var(--blk)}
+
+/* HERO */
+.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,var(--y) 0%,var(--o) 25%,var(--r) 50%,var(--pk) 75%,var(--lv) 100%)}
+.hero-art{position:absolute;inset:0;z-index:1}
+.hero-art img{position:absolute;border:4px solid var(--blk);box-shadow:6px 6px 0 rgba(0,0,0,.25);border-radius:4px}
+.hc{position:relative;z-index:10;text-align:center;max-width:1000px;padding:0 2rem}
+.hk{width:85px;height:85px;margin:0 auto 1rem;opacity:0;transform:scale(0) rotate(-180deg)}
+.hp{font-family:var(--f2);font-size:clamp(.9rem,1.5vw,1.15rem);color:var(--blk);letter-spacing:.25em;opacity:0;transform:translateY(30px)}
+.hh{font-family:var(--f1);font-size:clamp(5.5rem,15vw,14rem);line-height:.86;letter-spacing:.04em;opacity:0;transform:translateY(50px);margin-top:.3rem;color:#fff;text-shadow:4px 4px 0 var(--blk),-1px -1px 0 var(--blk),1px -1px 0 var(--blk),-1px 1px 0 var(--blk),1px 1px 0 var(--blk)}
+.hs{font-size:clamp(1rem,2vw,1.25rem);font-weight:500;color:var(--blk);margin-top:1.2rem;letter-spacing:.08em;opacity:0;transform:translateY(30px)}
+.hi{display:flex;justify-content:center;align-items:center;gap:2.5rem;margin-top:2rem;opacity:0;transform:translateY(20px)}
+.hi img{height:62px;width:auto;filter:drop-shadow(4px 4px 0 rgba(0,0,0,.3));transition:transform .3s var(--pop);border-radius:6px;border:3px solid var(--blk)}
+.hi img:hover{transform:scale(1.18) rotate(-6deg)}
+.hi img.k-icon{border-radius:0;border:none}
+.sc{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0}
+.sc span{font-family:var(--f1);font-size:.7rem;letter-spacing:.4em;color:var(--blk)}
+.sc .ln{width:2px;height:45px;background:linear-gradient(to bottom,var(--blk),transparent);animation:pls 2s ease-in-out infinite}
+@keyframes pls{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(.5)}}
+
+/* POP ICONS - BRIGHT BG */
+.ico{position:relative;padding:7rem 3rem;background:linear-gradient(135deg,var(--cy),var(--b));color:#fff;text-align:center;overflow:hidden}
+.ico h2{font-family:var(--f1);font-size:clamp(3rem,7vw,6rem);letter-spacing:.05em;line-height:1;text-shadow:3px 3px 0 rgba(0,0,0,.2)}
+.ico h2 span{color:var(--y)}
+.ico .sub{font-size:1.05rem;color:rgba(255,255,255,.8);font-weight:300;margin-top:1rem;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.7}
+.trio{display:flex;justify-content:center;align-items:flex-end;gap:4rem;margin-top:4rem;flex-wrap:wrap}
+.tc{display:flex;flex-direction:column;align-items:center;max-width:240px}
+.tc img{height:160px;width:auto;filter:drop-shadow(6px 6px 0 rgba(0,0,0,.2));transition:transform .4s var(--pop)}
+.tc:hover img{transform:scale(1.1) rotate(-4deg)}
+.tc h3{font-family:var(--f1);font-size:1.5rem;letter-spacing:.1em;margin-top:1.2rem;text-shadow:1px 1px 0 rgba(0,0,0,.1)}
+.tc p{font-size:.82rem;color:rgba(255,255,255,.65);margin-top:.3rem}
+
+/* CMU BANNER */
+.cmu{position:relative;height:55vh;min-height:400px;overflow:hidden;border-top:8px solid var(--blk);border-bottom:8px solid var(--blk)}
+.cmu img{width:100%;height:100%;object-fit:cover}
+.cmu .ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(229,26,44,.85) 0%,rgba(229,26,44,.4) 35%,transparent 60%);display:flex;align-items:center;padding:0 5rem}
+.cmu .ov-c{max-width:480px}
+.cmu h2{font-family:var(--f1);font-size:clamp(2.5rem,5vw,4.5rem);color:#fff;line-height:1.05;text-shadow:3px 3px 0 rgba(0,0,0,.2)}
+.cmu h2 span{color:var(--y)}
+.cmu p{font-size:.95rem;color:rgba(255,255,255,.85);font-weight:300;margin-top:1rem;line-height:1.7}
+
+/* 3D PERSPECTIVE GALLERY */
+.gal{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--g) 0%,var(--cy) 50%,var(--b) 100%);padding:0}
+.gal-hd{padding:7rem 3rem 2rem;text-align:center}
+.gal-hd h2{font-family:var(--f1);font-size:clamp(3rem,7vw,6rem);letter-spacing:.05em;color:#fff;text-shadow:3px 3px 0 rgba(0,0,0,.2)}
+.gal-hd h2 span{color:var(--y)}
+.gal-hd p{font-size:.95rem;color:rgba(255,255,255,.7);font-weight:300;margin-top:.5rem;max-width:680px;margin-left:auto;margin-right:auto}
+.gw{position:relative;overflow:hidden;padding:3rem 0 6rem}
+.gt{display:flex;gap:2rem;padding:0 3rem;width:max-content}
+.gi{flex-shrink:0;width:380px;transition:transform .4s var(--pop)}
+.gi:hover{transform:translateY(-12px) scale(1.02)}
+.gf{background:var(--wh);border:5px solid var(--blk);padding:1rem;position:relative;overflow:hidden;box-shadow:8px 8px 0 rgba(0,0,0,.2)}
+.gf img{width:100%;aspect-ratio:1;object-fit:cover;border:2px solid var(--blk);transition:transform .5s ease}
+.gi:hover .gf img{transform:scale(1.06)}
+.gl{margin-top:.8rem;display:flex;justify-content:space-between;align-items:flex-end}
+.gl h3{font-family:var(--f1);font-size:1.1rem;letter-spacing:.08em;color:#fff}
+.gl span{font-size:.7rem;color:rgba(255,255,255,.5)}
+
+/* STAR WARS SCROLL - 3D PERSPECTIVE TEXT */
+.sw{position:relative;height:120vh;overflow:hidden;background:var(--r);perspective:600px}
+.sw-inner{position:absolute;bottom:0;left:50%;width:90%;max-width:900px;transform-origin:50% 100%;transform:translateX(-50%) rotateX(35deg);text-align:center;padding:4rem 2rem;color:#fff}
+.sw-inner h2{font-family:var(--f1);font-size:clamp(3rem,6vw,5.5rem);text-shadow:2px 2px 0 rgba(0,0,0,.2);margin-bottom:1.5rem;line-height:1}
+.sw-inner h2 span{color:var(--y)}
+.sw-inner p{font-size:1.1rem;font-weight:300;line-height:1.8;color:rgba(255,255,255,.85);max-width:600px;margin:0 auto 1rem}
+.sw-inner .qt-a{font-family:var(--f2);font-size:.9rem;color:var(--y);letter-spacing:.1em;margin-top:1rem}
+
+/* BIO - COLORFUL */
+.bio{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--o),var(--y));color:var(--blk)}
+.bio-g{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1400px;margin:0 auto;padding:8rem 4rem;align-items:center}
+.bio-iw{position:relative}
+.bio-iw::before{content:'';position:absolute;top:-16px;left:-16px;right:16px;bottom:16px;border:6px solid var(--blk);z-index:-1}
+.bio-iw>img:first-child{width:100%;border:5px solid var(--blk);box-shadow:8px 8px 0 rgba(0,0,0,.15)}
+.bio-cof{position:absolute;bottom:-40px;right:-30px;width:100px;opacity:.35;transform:rotate(12deg);border-radius:6px}
+.bio-c .ey{font-family:var(--f2);font-size:.95rem;letter-spacing:.15em}
+.bio-c .ey::after{content:'';display:block;width:60px;height:4px;background:var(--r);margin-top:.75rem}
+.bio-c h2{font-family:var(--f1);font-size:clamp(2.5rem,4vw,4rem);line-height:1.05;margin:1.5rem 0 2rem}
+.bio-c h2 em{color:var(--r);font-style:normal}
+.bt{font-size:.95rem;line-height:1.8;color:rgba(0,0,0,.7);font-weight:300;margin-bottom:1.2rem}
+.bio-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:3px solid rgba(0,0,0,.1)}
+.sn{font-family:var(--f1);font-size:2.8rem;color:var(--r);line-height:1}
+.sl{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(0,0,0,.4);margin-top:.4rem}
+
+/* ZOOM MOSAIC */
+.mos{background:linear-gradient(135deg,var(--pk),var(--lv),var(--b));padding:6rem 0;overflow:hidden;color:#fff}
+.mos-hd{text-align:center;padding:0 3rem 3rem}
+.mos-hd h2{font-family:var(--f1);font-size:clamp(3rem,6vw,5rem);text-shadow:3px 3px 0 rgba(0,0,0,.2)}
+.mos-hd h2 span{color:var(--y)}
+.mos-hd p{font-size:.95rem;color:rgba(255,255,255,.7);font-weight:300;margin-top:.5rem;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.6}
+.mg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;max-width:1600px;margin:0 auto}
+.mi{position:relative;overflow:hidden;border:3px solid var(--blk);cursor:pointer}
+.mi.tl{grid-row:span 2}.mi.wd{grid-column:span 2}
+.mi img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.mi:hover img{transform:scale(1.12)}
+
+/* FRIENDS */
+.friends{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--y),var(--o));color:var(--blk)}
+.friends-hero{position:relative;height:55vh;min-height:380px;overflow:hidden}
+.friends-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.friends-hero .fo{position:absolute;inset:0;background:linear-gradient(to top,rgba(255,212,0,.95) 0%,rgba(255,107,0,.6) 40%,transparent 70%);display:flex;align-items:flex-end;padding:3rem 5rem}
+.friends-hero h2{font-family:var(--f1);font-size:clamp(2.5rem,6vw,5rem);line-height:1;text-shadow:2px 2px 0 rgba(0,0,0,.1)}
+.friends-hero h2 span{color:var(--r)}
+.friends-hero .tag{font-family:var(--f2);font-size:.85rem;color:var(--r);letter-spacing:.12em;margin-bottom:.5rem}
+.friends-body{max-width:1100px;margin:0 auto;padding:4rem 3rem}
+.friends-body p{font-size:.95rem;line-height:1.8;color:rgba(0,0,0,.65);font-weight:300;margin-bottom:1.5rem}
+.friends-body .highlight{font-family:var(--f2);color:var(--r);font-size:.85rem;letter-spacing:.05em;font-weight:400}
+
+/* FEATURED - VIBRANT */
+.feat{padding:8rem 0;background:linear-gradient(180deg,var(--cr),#fff,var(--cr))}
+.feat-hd{text-align:center;padding:0 3rem 4rem}
+.feat-hd h2{font-family:var(--f1);font-size:clamp(3rem,6vw,5rem);color:var(--blk)}
+.fw{display:grid;grid-template-columns:1.2fr 1fr;max-width:1500px;margin:0 auto 5rem;border:5px solid var(--blk);overflow:hidden;background:var(--wh);box-shadow:10px 10px 0 rgba(0,0,0,.1)}
+.fw:nth-child(odd){grid-template-columns:1fr 1.2fr}
+.fw:nth-child(odd) .fi{order:2}
+.fw:nth-child(odd) .fn{order:1}
+.fi{position:relative;overflow:hidden;min-height:420px}
+.fi img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.fw:hover .fi img{transform:scale(1.05)}
+.fn{padding:3.5rem;display:flex;flex-direction:column;justify-content:center;border-left:5px solid var(--blk)}
+.fw:nth-child(odd) .fn{border-left:none;border-right:5px solid var(--blk)}
+.ft2{font-family:var(--f2);font-size:.8rem;color:var(--r);letter-spacing:.1em;margin-bottom:.7rem}
+.fh{font-family:var(--f1);font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:.05em;line-height:1.1;margin-bottom:1rem}
+.fd{font-size:.9rem;line-height:1.7;color:rgba(0,0,0,.5);font-weight:300}
+.fm{margin-top:1.5rem;padding-top:1rem;border-top:2px solid rgba(0,0,0,.06);display:flex;gap:2rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(0,0,0,.3)}
+.fm strong{display:block;color:var(--blk);font-family:var(--f1);font-size:.9rem;margin-top:.15rem}
+
+/* BRANDS - BRIGHT */
+.brands{padding:7rem 0;background:linear-gradient(135deg,var(--r),var(--o),var(--y));color:var(--blk);overflow:hidden}
+.brands-hd{text-align:center;padding:0 3rem 2rem}
+.brands-hd h2{font-family:var(--f1);font-size:clamp(3rem,6vw,5rem);color:#fff;text-shadow:3px 3px 0 rgba(0,0,0,.15)}
+.brands-hd h2 span{color:var(--blk)}
+.brands-hd p{font-size:.95rem;color:rgba(255,255,255,.85);font-weight:300;max-width:700px;margin:.7rem auto 0;line-height:1.7}
+.mq{overflow:hidden;white-space:nowrap;padding:1.8rem 0;border-top:4px solid var(--blk);border-bottom:4px solid var(--blk);margin-top:2rem;background:rgba(255,255,255,.15)}
+.mq-t{display:inline-flex;animation:ms 30s linear infinite}
+.mq-t:hover{animation-play-state:paused}
+@keyframes ms{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.mi2{display:inline-flex;align-items:center;padding:0 2.5rem;font-family:var(--f1);font-size:clamp(1.3rem,2.5vw,2rem);letter-spacing:.1em;color:rgba(0,0,0,.2);transition:color .3s;white-space:nowrap}
+.mi2:hover{color:#fff}
+.mi2::after{content:'';width:10px;height:10px;background:var(--blk);border:2px solid var(--blk);border-radius:50%;margin-left:2.5rem;flex-shrink:0}
+.col-row{text-align:center;padding:3rem 3rem 0}
+.col-row h3{font-family:var(--f1);font-size:1.2rem;letter-spacing:.15em;color:rgba(0,0,0,.4);margin-bottom:1rem}
+.cn{font-size:.85rem;color:rgba(0,0,0,.5);font-weight:300;line-height:1.8;max-width:900px;margin:0 auto}
+.cn strong{color:var(--blk);font-weight:700}
+
+/* EXHIBITIONS - COLORFUL */
+.exh{background:linear-gradient(180deg,var(--b),var(--lv),var(--pk));color:#fff;overflow:hidden}
+.exh-hero{position:relative;height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.exh-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.exh-hero .ov{position:relative;z-index:2;text-align:center}
+.exh-hero h2{font-family:var(--f1);font-size:clamp(3rem,8vw,7rem);letter-spacing:.05em;line-height:1;text-shadow:4px 4px 0 rgba(0,0,0,.2)}
+.exh-hero h2 span{color:var(--y)}
+.tl2{max-width:1100px;margin:0 auto;padding:5rem 3rem}
+.tli{display:grid;grid-template-columns:85px 3px 1fr;gap:1.5rem;padding-bottom:2.5rem}
+.tly{font-family:var(--f1);font-size:1.3rem;color:var(--y);text-align:right;padding-top:.2rem}
+.tll{background:rgba(255,255,255,.15);position:relative}
+.tll::before{content:'';position:absolute;top:.35rem;left:50%;transform:translateX(-50%);width:11px;height:11px;background:var(--y);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
+.tlc h3{font-family:var(--f1);font-size:1.2rem;letter-spacing:.08em;margin-bottom:.25rem}
+.tlc p{font-size:.82rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.5}
+.exh-list{max-width:1100px;margin:0 auto;padding:0 3rem 5rem}
+.exh-list h3{font-family:var(--f1);font-size:1.8rem;letter-spacing:.1em;margin-bottom:2rem;text-align:center;color:var(--y)}
+.exh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem 2rem}
+.exh-grid span{font-size:.78rem;color:rgba(255,255,255,.5);font-weight:300;padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+
+/* SUBSCRIBE */
+.sub-sec{position:relative;padding:6rem 3rem;text-align:center;background:linear-gradient(90deg,var(--cy),var(--b),var(--lv),var(--pk),var(--r));background-size:300% 100%;animation:gd 6s linear infinite}
+.sub-in{position:relative;z-index:2;max-width:600px;margin:0 auto;color:#fff}
+.sub-in h2{font-family:var(--f1);font-size:clamp(2rem,4vw,3.5rem);text-shadow:2px 2px 0 rgba(0,0,0,.1)}
+.sub-in p{font-size:.9rem;color:rgba(255,255,255,.8);font-weight:300;margin:.8rem 0 2rem}
+.sub-form{display:flex;gap:.5rem;max-width:420px;margin:0 auto}
+.sub-form input{flex:1;padding:.8rem 1.2rem;border:3px solid var(--blk);font-family:var(--f3);font-size:.9rem;outline:none}
+.sub-form button{font-family:var(--f1);font-size:1rem;letter-spacing:.15em;padding:.8rem 1.5rem;background:var(--y);color:var(--blk);border:3px solid var(--blk);cursor:pointer;transition:all .3s var(--pop)}
+.sub-form button:hover{background:var(--blk);color:var(--y);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--y)}
+
+/* CTA */
+.cta{position:relative;padding:10rem 3rem;text-align:center;overflow:hidden;background:linear-gradient(135deg,var(--g),var(--cy),var(--b))}
+.cta-in{position:relative;z-index:2;max-width:800px;margin:0 auto;color:#fff}
+.cta-in h2{font-family:var(--f1);font-size:clamp(3rem,7vw,6rem);letter-spacing:.05em;line-height:1;margin-bottom:1.2rem;text-shadow:3px 3px 0 rgba(0,0,0,.15)}
+.cta-in h2 span{color:var(--y)}
+.cta-in p{font-size:1rem;color:rgba(255,255,255,.75);font-weight:300;line-height:1.7;margin-bottom:2.5rem}
+.btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{font-family:var(--f1);font-size:1rem;letter-spacing:.15em;padding:1rem 2rem;border:4px solid var(--blk);cursor:pointer;transition:all .3s var(--pop);display:inline-block}
+.by{background:var(--y);color:var(--blk)}
+.by:hover{background:var(--r);color:#fff;transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--y)}
+.bo{background:rgba(255,255,255,.15);color:#fff}
+.bo:hover{background:#fff;color:var(--blk);transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--r)}
+.br{background:var(--o);color:var(--blk)}
+.br:hover{background:var(--pk);color:#fff;transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--o)}
+
+/* FOOTER */
+.ft{border-top:6px solid var(--blk);padding:4rem 3rem 2rem;background:var(--cr)}
+.ft-g{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2.5rem;max-width:1400px;margin:0 auto}
+.ft-bt{display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem}
+.ft-bt img{width:28px}
+.ft-bt h3{font-family:var(--f1);font-size:1.4rem;letter-spacing:.15em}
+.ft-bt h3 span{color:var(--r)}
+.ft-b p{font-size:.8rem;color:rgba(0,0,0,.4);font-weight:300;line-height:1.6;max-width:280px}
+.social-row{display:flex;gap:.8rem;margin-top:1rem}
+.social-row a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:3px solid var(--blk);border-radius:50%;font-size:.75rem;font-family:var(--f1);transition:all .3s var(--pop)}
+.social-row a:hover{background:var(--r);color:#fff;transform:scale(1.1) rotate(-6deg)}
+.ft-c h4{font-family:var(--f1);font-size:.85rem;letter-spacing:.15em;color:var(--r);margin-bottom:1rem}
+.ft-c a{display:block;font-size:.78rem;color:rgba(0,0,0,.4);padding:.2rem 0;transition:color .2s}
+.ft-c a:hover{color:var(--r)}
+.ft-bot{max-width:1400px;margin:3rem auto 0;padding-top:1.5rem;border-top:3px solid rgba(0,0,0,.06);display:flex;justify-content:space-between;font-size:.7rem;color:rgba(0,0,0,.25)}
+
+/* REVEALS */
+.rv{opacity:0;transform:translateY(50px);transition:opacity .8s ease,transform .8s ease}
+.rv.v{opacity:1;transform:translateY(0)}
+.rl{opacity:0;transform:translateX(-60px);transition:opacity .8s ease,transform .8s ease}
+.rl.v{opacity:1;transform:translateX(0)}
+.rr{opacity:0;transform:translateX(60px);transition:opacity .8s ease,transform .8s ease}
+.rr.v{opacity:1;transform:translateX(0)}
+.rs{opacity:0;transform:scale(.85);transition:opacity .8s ease,transform .8s ease}
+.rs.v{opacity:1;transform:scale(1)}
+/* Spin-in reveal */
+.rsp{opacity:0;transform:scale(0) rotate(-90deg);transition:opacity .6s ease,transform .8s var(--pop)}
+.rsp.v{opacity:1;transform:scale(1) rotate(0)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+.bio-g{grid-template-columns:1fr;gap:3rem;padding:6rem 2rem}
+.fw,.fw:nth-child(odd){grid-template-columns:1fr}
+.fw:nth-child(odd) .fi{order:1}.fw:nth-child(odd) .fn{order:2;border-right:none;border-top:5px solid var(--blk)}
+.fn{border-left:none!important;border-top:5px solid var(--blk)}
+.mg{grid-template-columns:repeat(2,1fr)}
+.ft-g{grid-template-columns:1fr 1fr}
+.exh-grid{grid-template-columns:repeat(2,1fr)}
+.cmu .ov{padding:0 3rem}
+}
+@media(max-width:768px){
+.nR{display:none}.burger{display:flex}
+.gi{width:280px}
+.mg{grid-template-columns:1fr 1fr}
+.mi.wd{grid-column:span 1}.mi.tl{grid-row:span 1}
+.bio-stats{flex-wrap:wrap;gap:1.5rem}
+.trio{gap:2rem}.tc img{height:110px}
+.btns{flex-direction:column;align-items:center}
+body{cursor:auto}#kC,.bk{display:none}
+.ft-g{grid-template-columns:1fr}
+.tli{grid-template-columns:55px 3px 1fr;gap:1rem}
+.exh-grid{grid-template-columns:1fr}
+.sub-form{flex-direction:column}
+.cmu{height:35vh}
+.friends-hero .fo{padding:2rem}
+.sw{height:80vh}
+.sw-inner{transform:translateX(-50%) rotateX(20deg)}
+}
+</style>
+</head>
+<body>
+<img id="kC" src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1570835969813-XAOHP3V1UT97FAUCRXZF/KERNALlogo.png?format=300w" alt="">
+<div id="kBg"></div>
+
+<div class="ld" id="ld">
+<img class="ld-k" src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1570835969813-XAOHP3V1UT97FAUCRXZF/KERNALlogo.png?format=300w" alt="">
+<div class="ld-t">BURTON MORRIS</div>
+<div class="ld-bar"><div class="ld-fill" id="lf"></div></div>
+</div>
+
+<nav class="nav">
+<a href="#" class="nL"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1570835969813-XAOHP3V1UT97FAUCRXZF/KERNALlogo.png?format=300w" alt="Kernal"><span>BURTON MORRIS</span></a>
+<ul class="nR">
+<li><a href="#paintings">PAINTINGS</a></li>
+<li><a href="#bio">THE ARTIST</a></li>
+<li><a href="#friends">FRIENDS</a></li>
+<li><a href="#exhibitions">EXHIBITIONS</a></li>
+<li><a href="#projects">PROJECTS</a></li>
+<li><a href="https://burtonmorriscollection.com/" target="_blank" class="shop-btn">SHOP</a></li>
+</ul>
+<div class="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO: YELLOW/ORANGE/RED/PINK GRADIENT -->
+<section class="hero" id="hero">
+<div class="hero-art" id="hA"></div>
+<div class="hc">
+<img class="hk" src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1570835969813-XAOHP3V1UT97FAUCRXZF/KERNALlogo.png?format=500w" alt="Kernal">
+<div class="hp">WELCOME TO THE WORLD OF</div>
+<h1 class="hh">BURTON<br>MORRIS</h1>
+<p class="hs">Painting Pop Culture Iconography</p>
+<div class="hi">
+<img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1705657993318-W87WA6C1DIO6JOUIUWTD/Red+Coffee+Cup1.jpg" alt="Coffee Cup">
+<img class="k-icon" src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1570835969813-XAOHP3V1UT97FAUCRXZF/KERNALlogo.png?format=300w" alt="Kernal" style="height:52px">
+<img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1602426552552-49U8SRUSDAHFM80NRM8E/Popcorn%2BRed%2BSilkscreen.1998.jpg" alt="Popcorn">
+</div>
+</div>
+<div class="sc" id="sc"><span>SCROLL TO ENTER</span><div class="ln"></div></div>
+</section>
+
+<div class="rb thick"></div>
+
+<!-- POP ICONS: BLUE/CYAN BG -->
+<section class="ico">
+<h2 class="rv"><span>POP</span> ICONS</h2>
+<p class="sub rv">Over the past three decades, Burton Morris has reimagined objects and icons, challenging the way we view everyday ideas in our modern day culture. Each painting distills a broader concept into its simplest form.</p>
+<div class="trio">
+<div class="tc rsp"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1570835969813-XAOHP3V1UT97FAUCRXZF/KERNALlogo.png?format=500w" alt="Kernal"><h3>THE KERNAL</h3><p>The seed of thought & creativity</p></div>
+<div class="tc rsp"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1705657993318-W87WA6C1DIO6JOUIUWTD/Red+Coffee+Cup1.jpg" alt="Coffee Cup" style="border-radius:8px"><h3>THE COFFEE CUP</h3><p>Central Perk. Global icon.</p></div>
+<div class="tc rsp"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1602426552552-49U8SRUSDAHFM80NRM8E/Popcorn%2BRed%2BSilkscreen.1998.jpg" alt="Popcorn" style="border-radius:8px"><h3>THE POPCORN</h3><p>Pop culture, pure & simple</p></div>
+</div>
+</section>
+
+<div class="rb"></div>
+
+<!-- CMU SPREAD -->
+<section class="cmu rv">
+<img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1600578433914-JMMW2G7B4HHGLJJXH5VB/Press-CMU-spread-HR1.jpg?format=2500w" alt="Pop! Goes the Artist — CMU">
+<div class="ov"><div class="ov-c">
+<h2>POP! GOES<br>THE <span>ARTIST</span></h2>
+<p>When Burton Morris enrolled at Carnegie Mellon in the 1980s, history repeated itself. The same university that launched Andy Warhol produced another pop art visionary.</p>
+</div></div>
+</section>
+
+<div class="rb thick"></div>
+
+<!-- GALLERY: GREEN/CYAN/BLUE BG -->
+<section class="gal" id="paintings">
+<div class="gal-hd rv">
+<h2>THE <span>COLLECTION</span></h2>
+<p>His distinctive style is evident in the use of bold colors and dynamic hash marks that infuse energy into each creation.</p>
+</div>
+<div class="gw"><div class="gt" id="gt">
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1751004308088-WTZOYMNRKKIHA9CH7CRW/Burton+Morris.1.2025.jpeg" alt loading=lazy></div><div class="gl"><h3>NEW WORK 2025</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1705657993318-W87WA6C1DIO6JOUIUWTD/Red+Coffee+Cup1.jpg" alt loading=lazy></div><div class="gl"><h3>RED COFFEE CUP</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1750566952742-L7GLF3XB0ZU0UZ9SCCR6/GUMBALL+MACHINE+WALL+SERIES.jpg" alt loading=lazy></div><div class="gl"><h3>GUMBALL MACHINE</h3><span>Wall Series</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1601025901561-WSANDRXFKUC960QO2KH1/Batman+2020.jpg" alt loading=lazy></div><div class="gl"><h3>BATMAN</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1602426552552-49U8SRUSDAHFM80NRM8E/Popcorn%2BRed%2BSilkscreen.1998.jpg" alt loading=lazy></div><div class="gl"><h3>POPCORN RED</h3><span>Silkscreen 1998</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1623689888164-EQJ388WME7TVFCUKVJ7W/Mona+Lisa.36x36.2021.jpg" alt loading=lazy></div><div class="gl"><h3>MONA LISA</h3><span>36×36</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1611028752840-C8UTZNZPD3GX43STA6XH/MLK5.jpg" alt loading=lazy></div><div class="gl"><h3>MLK</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1619599389001-9UIJ9YBEE2W49L84PWBI/POP%21+Colors.100A.jpg" alt loading=lazy></div><div class="gl"><h3>POP! COLORS</h3><span>100-Series</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1584143526559-71OTJ9OMPUW1XH51QUZK/Coffee+Cup+BW.8.12.HR.jpg" alt loading=lazy></div><div class="gl"><h3>COFFEE CUP B&W</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1601101283413-B7X5K6IU11Q6FGO6ZAJ0/LIBERTY+RED.jpg" alt loading=lazy></div><div class="gl"><h3>LIBERTY RED</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1619591832686-JFSPJPBC36JNXVQVM0EX/Captain+America.jpg" alt loading=lazy></div><div class="gl"><h3>CAPTAIN AMERICA</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1600937562150-SF1DCXJPKD3SVG8XFH30/Martini+w+Olives+-150HR.jpg" alt loading=lazy></div><div class="gl"><h3>MARTINI WITH OLIVES</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1616213034669-1Z8HTENFELLSL1FELLVQ/Slot+Machine+Bitcoin+red.48x36.jpg" alt loading=lazy></div><div class="gl"><h3>BITCOIN SLOT</h3><span>48×36</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1609960241011-ULYZM7GN9G3JBJAMD421/Wonder+Woman+Pops%21.jpg" alt loading=lazy></div><div class="gl"><h3>WONDER WOMAN</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1600937459592-HG68TBDIO4I5BI4MOKSA/Quarantini.jpeg" alt loading=lazy></div><div class="gl"><h3>QUARANTINI</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1619591834751-BT3BWC79UVPJRCX89GVD/Frosted+Flakes.mashup.jpg" alt loading=lazy></div><div class="gl"><h3>FROSTED FLAKES</h3><span>Mashup</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1621963967329-SOP319ECF53SMMCF0LBE/Rice+Krispies.Mashup.jpg" alt loading=lazy></div><div class="gl"><h3>RICE KRISPIES</h3><span>Mashup</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1616213177565-89G2MCXTN8AATARBLGU4/Big+Boy3+2.jpg" alt loading=lazy></div><div class="gl"><h3>BIG BOY</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1601101272207-YGHJCC39P5Q2PYERZ7C1/Lovebug+Silkscreen.jpg" alt loading=lazy></div><div class="gl"><h3>LOVEBUG</h3><span>Silkscreen</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1624781088955-XQGT9RKH95MDKTHTUMFB/Kernel+Circles.jpg" alt loading=lazy></div><div class="gl"><h3>KERNEL CIRCLES</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1580515846081-ZPIA128PV823JWAUCKEX/Louis+Vuitton+purse+ptg+-3-09+HR.jpg" alt loading=lazy></div><div class="gl"><h3>LOUIS VUITTON</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1704959401368-VYAU2F7JF4I6INBPFCES/Chanel+Purse+Red.Side1.jpg" alt loading=lazy></div><div class="gl"><h3>CHANEL RED</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1750613721695-AY7F85K0MQB8O0VWBTZ6/Heavenly+Coca+Cola.RB.jpg" alt loading=lazy></div><div class="gl"><h3>COCA-COLA</h3><span>Acrylic</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1616216554848-A4XHWRJWNOG6VU8CALTA/Lucky+Charms.jpg" alt loading=lazy></div><div class="gl"><h3>LUCKY CHARMS</h3><span>Mashup</span></div></div>
+<div class="gi"><div class="gf"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1727335442668-TSGIAO3UM0ATFHY30ESZ/Butterfly+Sculpture.1A.jpg" alt loading=lazy></div><div class="gl"><h3>BUTTERFLY</h3><span>Sculpture</span></div></div>
+</div></div></section>
+
+<div class="rb thick"></div>
+
+<!-- STAR WARS QUOTE SCROLL -->
+<section class="sw" id="quote">
+<div class="sw-inner" id="swI">
+<h2>ENERGY <span>&</span> OPTIMISM</h2>
+<p>"I want my work to radiate energy and optimism. In a fast-moving world filled with complexity, my goal is to create images that are instantly recognizable and universally uplifting."</p>
+<div class="qt-a">— Burton Morris</div>
+</div>
+</section>
+
+<div class="rb"></div>
+
+<!-- BIO: ORANGE/YELLOW BG -->
+<section class="bio" id="bio">
+<div class="bio-g">
+<div class="bio-iw rl">
+<img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1743057115961-VC6OXLZAPC6EZISYULHJ/Burton+painting.2A.jpg" alt="Burton Morris">
+<img class="bio-cof" src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1705657993318-W87WA6C1DIO6JOUIUWTD/Red+Coffee+Cup1.jpg" alt="">
+</div>
+<div class="bio-c rr">
+<span class="ey">The Artist</span>
+<h2>FROM PITTSBURGH<br>TO THE <em>WORLD STAGE</em></h2>
+<p class="bt">Internationally acclaimed Pop Artist Burton Morris is renowned for his bold, high-energy interpretations of pop culture iconography. His signature style—characterized by radiant black outlines, amplified colors, and striking compositions—transforms everyday objects into vibrant icons of contemporary life.</p>
+<p class="bt">Born in Pittsburgh, Pennsylvania in 1964, he earned his BFA at Carnegie Mellon University in 1986. He established Burton Morris Studios in 1990, choosing one subject per composition to create "an instant happening" for the viewer—blurring the lines between high and low art.</p>
+<p class="bt">In 1992, Absolut Vodka selected his artwork alongside Warhol and Haring. In 1994, his paintings debuted on "Friends," displayed in Central Perk for over ten seasons. His "destruct" style—vibrating canvases caught mid-motion—mirrors the rapid rhythm of contemporary life.</p>
+<p class="bt">Beyond art, Morris has raised millions for charitable causes worldwide.</p>
+<div class="bio-stats">
+<div><div class="sn">35+</div><div class="sl">Years Creating</div></div>
+<div><div class="sn">50+</div><div class="sl">Global Shows</div></div>
+<div><div class="sn">100+</div><div class="sl">Brand Collabs</div></div>
+</div></div></div>
+</section>
+
+<div class="rb thick"></div>
+
+<!-- MOSAIC: PINK/PURPLE/BLUE -->
+<section class="mos">
+<div class="mos-hd rv"><h2>INSIDE THE <span>STUDIO</span></h2><p>Interior paintings, installations, and artworks in their natural habitat — radiating energy wherever they live.</p></div>
+<div class="mg">
+<div class="mi tl rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1601022590621-XG660AK5S19V0AYXW9WF/Popcorn+quad+-green+-+hi+res.jpg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1601137555535-FMO45IMURZ2DKWFOTQMG/Kernel+and+Coffee+Cup.jpg" alt loading=lazy></div>
+<div class="mi wd rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1602384164015-ID05B2LWWPQT2CFAENEJ/Supergirls%2Bart%2Bon%2Bwall.jpg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1674064966566-JB2YPZMQUWPRLV8OGP74/Chanel+Exhibition.2023.jpeg" alt loading=lazy></div>
+<div class="mi wd rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1602352495637-H6HJTV524TD0N4PA9UGV/Selection+of+art.jpeg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1593937415617-97SGS0K4LQRAF50COCMI/Burton+Morris+portrait.coffee+cups.19.jpg" alt loading=lazy></div>
+<div class="mi tl rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1616213601451-ITIXM8NK8N9VR0V6VL64/MARTINI+BLACK+QUAD.jpg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1601138067575-D9WJV9KFU7ID57I5H5GE/kernel+with+table.jpg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1602480683639-88V3MBBW86GCZYKMCDUL/Coca+Cola+Red+Bottle.jpg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1603435544187-B3UI5WDPHF1NZ2DOYXAH/PAinting+progress.jpg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1670225138512-GO2977FJ9F3HS5FNZPUB/Galerie+Michael+Art.2022.jpg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1602351817129-ONDXAP5AIDSP6TAWMBQK/Cereal+wall+installation-low+res.jpg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1601100395188-AQKE9LFXXHEDW7G94ADR/Hofstra-9HR-1330x877.jpg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1674064970302-0PQQWF4PGB0VGMPNLGXW/2022__UGO2311.JPG" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1735542561404-WTC2N81EMZBRKBXGMGUL/Chanel+Art.PSY.1.jpg" alt loading=lazy></div>
+<div class="mi rs"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1610262013996-7Z4OB3IVCCSQKFI6U1QN/Shake+Shack.art.jpg" alt loading=lazy></div>
+</div></section>
+
+<div class="rb"></div>
+
+<!-- FRIENDS: YELLOW/ORANGE -->
+<section class="friends" id="friends">
+<div class="friends-hero">
+<img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1593938118595-ME45HSHIC2V77ER08DOM/Interior+Gallery.Friends.jpg" alt loading=lazy>
+<div class="fo"><div>
+<div class="tag rv">Featured Exhibition</div>
+<h2 class="rv">THE ART OF <span>FRIENDS</span></h2>
+</div></div>
+</div>
+<div class="friends-body">
+<p class="rv">"The Art of Friends", an exhibition by Burton Morris in association with Warner Bros Inc., pays tribute to the artist's creative contributions to the television show that became a pop culture phenomenon. The show debuted at Taglialatella Galleries in Chelsea, New York City.</p>
+<p class="rv">Since Friends premiered in September 1994, more than a dozen of Morris' original pop art paintings were featured on set in the colorful Central Perk coffee shop throughout the sitcom's ten seasons. The millions of fans directly associated the bold, bright aesthetic of Morris' artwork with the characters and storylines of the beloved series.</p>
+<p class="rv highlight">Morris remembers when his sister called from California to say she saw David Schwimmer (Ross) wearing a tee shirt featuring his artwork. "He grabbed the shirt from a staff member right before filming the scene. Call it luck or good timing, but the next day I made a call to Warner Brothers Studios and was able to reach Kevin Bright, one of the creators of the show."</p>
+</div></section>
+
+<div class="rb thick"></div>
+
+<!-- FEATURED -->
+<section class="feat" id="featured">
+<div class="feat-hd rv"><h2>ICONIC MOMENTS</h2></div>
+<div class="fw rs">
+<div class="fi"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1609959894044-PRE2MQ4CYNTCR95D8704/Popcorn.Lee+House.jpg" alt loading=lazy></div>
+<div class="fn"><span class="ft2">Pop Icon</span><h3 class="fh">POPCORN — THE POP ICON</h3><p class="fd">The popcorn bucket is one of Morris's most recognizable symbols — pop culture in its purest form. Featured in private collections and installations worldwide.</p><div class="fm"><div>Medium<strong>Acrylic / Silkscreen</strong></div><div>Scope<strong>International</strong></div></div></div>
+</div>
+<div class="fw rs">
+<div class="fi"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1750613701113-RPZQJYJPGZLH7C67X93U/Coca+Cola+100+-+60x96+inches+-+diptych.BurtonMorris.jpg" alt loading=lazy></div>
+<div class="fn"><span class="ft2">Brand Collaboration</span><h3 class="fh">COCA-COLA 100</h3><p class="fd">When the world's most recognized brand meets the world's most energetic pop artist — a diptych celebrating 100 years of cultural impact.</p><div class="fm"><div>Client<strong>Coca-Cola Co.</strong></div><div>Size<strong>60×96 inches</strong></div></div></div>
+</div>
+<div class="fw rs">
+<div class="fi"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1750567028474-VOVD31ANXRCWWF0998CC/IMG_1614.jpeg" alt loading=lazy></div>
+<div class="fn"><span class="ft2">Interior Series</span><h3 class="fh">INTERIORS</h3><p class="fd">A series in homage to Roy Lichtenstein — Morris paints various home and museum Interiors showcasing his own art within artistic settings that reflect his energetic style.</p><div class="fm"><div>Inspiration<strong>Lichtenstein</strong></div><div>Medium<strong>Acrylic</strong></div></div></div>
+</div>
+</section>
+
+<div class="rb"></div>
+
+<!-- BRANDS: RED/ORANGE/YELLOW -->
+<section class="brands" id="projects">
+<div class="brands-hd rv">
+<h2>THE <span>WORLD</span> OF BURTON MORRIS</h2>
+<p>Brands and logo marks have always intrigued the Artist. His art is integrated into products and public events worldwide, extending its reach while maintaining its visual integrity.</p>
+</div>
+<div class="mq"><div class="mq-t">
+<span class="mi2">COCA-COLA</span><span class="mi2">CHANEL</span><span class="mi2">ROLEX</span><span class="mi2">THE OLYMPICS</span><span class="mi2">ACADEMY AWARDS</span><span class="mi2">UNITED NATIONS</span><span class="mi2">FIFA WORLD CUP</span><span class="mi2">APPLE</span><span class="mi2">WARNER BROS</span><span class="mi2">FORD</span><span class="mi2">SAMSUNG</span><span class="mi2">H.J. HEINZ</span><span class="mi2">SONY</span><span class="mi2">AUDEMARS PIGUET</span><span class="mi2">MICROSOFT</span><span class="mi2">AMAZON</span><span class="mi2">PERRIER</span><span class="mi2">AT&T</span><span class="mi2">KELLOGG'S</span><span class="mi2">THE WHITE HOUSE</span><span class="mi2">LA DODGERS</span><span class="mi2">LOUIS VUITTON</span><span class="mi2">GUCCI</span>
+<span class="mi2">COCA-COLA</span><span class="mi2">CHANEL</span><span class="mi2">ROLEX</span><span class="mi2">THE OLYMPICS</span><span class="mi2">ACADEMY AWARDS</span><span class="mi2">UNITED NATIONS</span><span class="mi2">FIFA WORLD CUP</span><span class="mi2">APPLE</span><span class="mi2">WARNER BROS</span><span class="mi2">FORD</span><span class="mi2">SAMSUNG</span><span class="mi2">H.J. HEINZ</span><span class="mi2">SONY</span><span class="mi2">AUDEMARS PIGUET</span><span class="mi2">MICROSOFT</span><span class="mi2">AMAZON</span><span class="mi2">PERRIER</span><span class="mi2">AT&T</span><span class="mi2">KELLOGG'S</span><span class="mi2">THE WHITE HOUSE</span><span class="mi2">LA DODGERS</span><span class="mi2">LOUIS VUITTON</span><span class="mi2">GUCCI</span>
+</div></div>
+<div class="col-row rv">
+<h3>IN THE COLLECTIONS OF</h3>
+<p class="cn">The Albright-Knox Museum · Academy of Motion Picture Arts & Sciences · Jimmy Carter Center · World of Coca-Cola Museum · Barack Obama Presidential Center · United Nations · Elysée Museum · <strong>Brad Pitt</strong> · <strong>Oprah Winfrey</strong> · <strong>Tommy Hilfiger</strong> · <strong>Stan Lee</strong> · <strong>Roy Disney</strong> · <strong>Ralph Lauren</strong> · <strong>John Travolta</strong> · <strong>Andre Agassi</strong> · <strong>Mario Lemieux</strong> · <strong>Emeril Lagasse</strong> · <strong>President Barack Obama</strong></p>
+</div></section>
+
+<div class="rb thick"></div>
+
+<!-- EXHIBITIONS: BLUE/PURPLE/PINK -->
+<section class="exh" id="exhibitions">
+<div class="exh-hero">
+<img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1602125261444-T9BZG2CUVWLFHDRUZ2CY/HHC+Exhibit.cow.HR.jpg" alt loading=lazy>
+<div class="ov rv"><h2>EXHIBITIONS <span>&</span><br>MILESTONES</h2></div>
+</div>
+<div class="tl2">
+<div class="tli rv"><div class="tly">2025</div><div class="tll"></div><div class="tlc"><h3>NEW STUDIO WORKS</h3><p>Pushing boundaries with new large-scale works and installations.</p></div></div>
+<div class="tli rv"><div class="tly">2023</div><div class="tll"></div><div class="tlc"><h3>CHANEL EXHIBITION</h3><p>A landmark collaboration with fashion's most prestigious house.</p></div></div>
+<div class="tli rv"><div class="tly">2019</div><div class="tll"></div><div class="tlc"><h3>"THE ART OF FRIENDS" — 25TH</h3><p>Taglialatella Galleries, NYC + Warner Bros.</p></div></div>
+<div class="tli rv"><div class="tly">2016</div><div class="tll"></div><div class="tlc"><h3>USGA U.S. OPEN</h3><p>Official artist for the championship.</p></div></div>
+<div class="tli rv"><div class="tly">2010</div><div class="tll"></div><div class="tlc"><h3>FIFA WORLD CUP</h3><p>South Africa — the world's largest sporting event.</p></div></div>
+<div class="tli rv"><div class="tly">2004</div><div class="tll"></div><div class="tlc"><h3>ACADEMY AWARDS & OLYMPICS</h3><p>76th Oscars + Athens Olympic Games.</p></div></div>
+<div class="tli rv"><div class="tly">1994</div><div class="tll"></div><div class="tlc"><h3>FRIENDS — CENTRAL PERK</h3><p>NBC's "Friends" — reaching millions for a decade.</p></div></div>
+<div class="tli rv"><div class="tly">1992</div><div class="tll"></div><div class="tlc"><h3>ABSOLUT PENNSYLVANIA</h3><p>Alongside Warhol and Haring.</p></div></div>
+</div>
+<div class="exh-list rv">
+<h3>SELECTED EXHIBITIONS — 1993 to 2025</h3>
+<div class="exh-grid">
+<span>Taglialatella Gallery — NYC</span><span>L. Kate Gallery — Seoul</span><span>Scope Art Fair — Miami Beach</span><span>LA Art Show — Los Angeles</span><span>Ferrari Museum — Modena, Italy</span><span>Heinz History Center — Pittsburgh</span><span>Gerald Hartinger Gallery — Vienna</span><span>Taglialatella — Paris, France</span><span>Galerie Mensing — Munich</span><span>World of Coca-Cola — Atlanta</span><span>Pop & Contemporary — Singapore</span><span>KIAF Seoul — Seoul, Korea</span><span>Galerie Michael — Beverly Hills</span><span>Hofstra University Museum — NY</span><span>Visionnaire Gallery — Milan</span><span>Art Basel — Miami, FL</span><span>Galerie ID — Geneva</span><span>Centre PasquArt — Bienne</span><span>Academy of Motion Pictures — LA</span><span>Montreux Jazz Festival — CH</span><span>Olympic Museum — Switzerland</span><span>Sotheby's — Amsterdam</span><span>Galerie Marguetta — Rome</span><span>Setan Gallery — Tokyo</span>
+</div></div></section>
+
+<div class="rb"></div>
+
+<!-- SUBSCRIBE: ANIMATED GRADIENT -->
+<section class="sub-sec">
+<div class="sub-in rv">
+<h2>STAY IN THE POP</h2>
+<p>New releases, exhibitions, and studio updates from Burton Morris.</p>
+<div class="sub-form">
+<input type="email" placeholder="Your email address">
+<button>SUBSCRIBE</button>
+</div></div></section>
+
+<div class="rb thick"></div>
+
+<!-- CTA: GREEN/CYAN/BLUE -->
+<section class="cta" id="contact">
+<div class="cta-in rv">
+<h2>STEP INTO<br>THE <span>POP</span></h2>
+<p>Collector, brand, or fan — Burton Morris Studios is open.</p>
+<div class="btns">
+<a href="https://burtonmorriscollection.com/fineartprints" target="_blank" class="btn by">FINE ART PRINTS</a>
+<a href="https://burtonmorriscollection.com/specialty-prints" target="_blank" class="btn br">SPECIALTY PRINTS</a>
+<a href="https://burtonmorriscollection.com/" target="_blank" class="btn bo">FULL SHOP</a>
+<a href="mailto:info@burtonmorris.com" class="btn bo">GET IN TOUCH</a>
+</div></div></section>
+
+<div class="rb"></div>
+<footer class="ft">
+<div class="ft-g">
+<div class="ft-b">
+<div class="ft-bt"><img src="https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1570835969813-XAOHP3V1UT97FAUCRXZF/KERNALlogo.png?format=300w" alt><h3>BURTON <span>MORRIS</span></h3></div>
+<p>Internationally recognized pop artist. Original artworks, commissions, and licensing. Pittsburgh · Los Angeles · Worldwide.</p>
+<div class="social-row">
+<a href="https://www.instagram.com/burtonmorrisart/" target="_blank" title="Instagram">IG</a>
+<a href="https://x.com/burtonmorrisart" target="_blank" title="X">X</a>
+<a href="https://www.facebook.com/BurtonMorrisArt/" target="_blank" title="Facebook">FB</a>
+</div></div>
+<div class="ft-c"><h4>EXPLORE</h4><a href="#paintings">Paintings</a><a href="#bio">The Artist</a><a href="#friends">Art of Friends</a><a href="#exhibitions">Exhibitions</a></div>
+<div class="ft-c"><h4>CONNECT</h4><a href="mailto:info@burtonmorris.com">Email Studio</a><a href="https://www.instagram.com/burtonmorrisart/" target=_blank>Instagram</a><a href="https://x.com/burtonmorrisart" target=_blank>X / Twitter</a><a href="https://www.facebook.com/BurtonMorrisArt/" target=_blank>Facebook</a></div>
+<div class="ft-c"><h4>COLLECT</h4><a href="https://burtonmorriscollection.com/fineartprints" target=_blank>Fine Art Prints</a><a href="https://burtonmorriscollection.com/specialty-prints" target=_blank>Specialty Prints</a><a href="https://burtonmorriscollection.com/" target=_blank>Full Shop</a></div>
+<div class="ft-c"><h4>SERVICES</h4><a href="mailto:info@burtonmorris.com">Commissions</a><a href="mailto:info@burtonmorris.com">Licensing</a><a href="mailto:info@burtonmorris.com">Brand Partners</a></div>
+</div>
+<div class="ft-bot"><span>© 2025 Burton Morris Studios.</span><span>Pittsburgh · Los Angeles · Worldwide</span></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const K='https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1570835969813-XAOHP3V1UT97FAUCRXZF/KERNALlogo.png?format=80w';
+
+// === KERNAL CURSOR + HOVER POPS + CLICK EXPLOSIONS ===
+(function(){
+if(innerWidth<768)return;
+const c=document.getElementById('kC');let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function t(){cx+=(mx-cx)*.12;cy+=(my-cy)*.12;c.style.left=cx+'px';c.style.top=cy+'px';requestAnimationFrame(t)})();
+
+// HOVER: popcorn bursts on EVERY element
+document.querySelectorAll('a,button,.gi,.mi,.tc,.fw,.tli,.exh-grid span,.mi2,.bio-iw,.friends-hero,.cmu,.bio-stats div,.nL,.btn').forEach(el=>{
+el.addEventListener('mouseenter',()=>{
+c.classList.add('h');
+for(let i=0;i<4;i++){
+const k=document.createElement('img');k.src=K;k.className='kp';
+const s=Math.random()*14+6;
+const r=el.getBoundingClientRect();
+const px=r.left+r.width*Math.random();
+const py=r.top+r.height*Math.random();
+k.style.cssText=`width:${s}px;height:${s}px;left:${px}px;top:${py}px;transform:translate(-50%,-50%)`;
+document.body.appendChild(k);
+gsap.to(k,{y:-40-Math.random()*50,x:Math.random()*60-30,rotation:Math.random()*400,opacity:0,scale:.1,duration:.7+Math.random()*.4,ease:'power2.out',onComplete:()=>k.remove()});
+}
+});
+el.addEventListener('mouseleave',()=>c.classList.remove('h'));
+});
+
+// CLICK: MASSIVE explosion
+document.addEventListener('click',e=>{
+// Kernels
+for(let i=0;i<12;i++){
+const k=document.createElement('img');k.src=K;k.className='kp';
+const s=Math.random()*24+8;
+k.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX}px;top:${e.clientY}px;transform:translate(-50%,-50%)`;
+document.body.appendChild(k);
+const a=Math.random()*Math.PI*2,d=Math.random()*140+40;
+gsap.to(k,{x:Math.cos(a)*d,y:Math.sin(a)*d-70,rotation:Math.random()*600,opacity:0,scale:.08,duration:.8+Math.random()*.6,ease:'power2.out',onComplete:()=>k.remove()});
+}
+// Color burst circles
+for(let i=0;i<6;i++){
+const d=document.createElement('div');
+const colors=['#E51A2C','#FFD400','#0057B8','#00A650','#FF6B00','#FF3399','#00D4FF','#9B59B6'];
+const c2=colors[Math.floor(Math.random()*colors.length)];
+d.style.cssText=`position:fixed;pointer-events:none;z-index:99997;width:12px;height:12px;border-radius:50%;background:${c2};left:${e.clientX}px;top:${e.clientY}px;transform:translate(-50%,-50%)`;
+document.body.appendChild(d);
+const a2=Math.random()*Math.PI*2,d2=Math.random()*100+30;
+gsap.to(d,{x:Math.cos(a2)*d2,y:Math.sin(a2)*d2-50,opacity:0,scale:3,duration:.6+Math.random()*.3,ease:'power1.out',onComplete:()=>d.remove()});
+}
+});
+
+// Ambient cursor pops - VERY frequent
+setInterval(()=>{
+if(Math.random()>.25)return;
+const k=document.createElement('img');k.src=K;k.className='kp';
+const s=Math.random()*12+4;
+k.style.cssText=`width:${s}px;height:${s}px;left:${cx+Math.random()*40-20}px;top:${cy+Math.random()*40-20}px;transform:translate(-50%,-50%)`;
+document.body.appendChild(k);
+gsap.to(k,{y:-45-Math.random()*35,x:Math.random()*30-15,rotation:Math.random()*300,opacity:0,scale:.06,duration:1+Math.random()*.5,ease:'power1.out',onComplete:()=>k.remove()});
+},100);
+})();
+
+// SCROLL KERNEL POPS - MORE
+(function(){
+if(innerWidth<768)return;
+const bg=document.getElementById('kBg');let ls=0,cnt=0;
+addEventListener('scroll',()=>{
+const s=scrollY,d=Math.abs(s-ls);
+if(d>12&&cnt<300){
+for(let i=0;i<Math.min(Math.floor(d/8),8);i++){
+const k=document.createElement('img');k.src=K;k.className='bk';
+const sz=Math.random()*35+10;
+k.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}vw;top:${Math.random()*100}vh;animation-duration:${Math.random()*3+2}s`;
+bg.appendChild(k);cnt++;
+setTimeout(()=>{k.remove();cnt--},5500);
+}
+ls=s;
+}
+});
+})();
+
+// HERO CONSTANT POPPING
+(function(){
+if(innerWidth<768)return;
+const hero=document.querySelector('.hero');
+setInterval(()=>{
+if(scrollY>innerHeight)return;
+const k=document.createElement('img');k.src=K;k.className='kp';
+const s=Math.random()*24+8;
+k.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*innerWidth}px;top:${Math.random()*innerHeight}px;z-index:5;opacity:.2`;
+hero.appendChild(k);
+gsap.to(k,{y:-90-Math.random()*70,x:Math.random()*60-30,rotation:Math.random()*400,opacity:0,scale:.15,duration:1.8+Math.random(),ease:'power1.out',onComplete:()=>k.remove()});
+},130);
+})();
+
+// LOADER
+(function(){
+const l=document.getElementById('ld'),f=document.getElementById('lf');let p=0;
+const iv=setInterval(()=>{p+=Math.random()*22+6;if(p>100)p=100;f.style.width=p+'%';
+if(p>=100){clearInterval(iv);setTimeout(()=>{l.classList.add('go');initAll()},350)}
+},140);
+})();
+
+function initAll(){
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero entrance
+const h=gsap.timeline({delay:.1});
+h.to('.hk',{opacity:1,scale:1,rotation:0,duration:1,ease:'back.out(1.7)'})
+.to('.hp',{opacity:1,y:0,duration:.5,ease:'power3.out'},'-=.3')
+.to('.hh',{opacity:1,y:0,duration:.7,ease:'power3.out'},'-=.2')
+.to('.hs',{opacity:1,y:0,duration:.5,ease:'power3.out'},'-=.25')
+.to('.hi',{opacity:1,y:0,duration:.5,ease:'power3.out'},'-=.2')
+.to('#sc',{opacity:1,duration:.3},'-=.1');
+
+// Floating hero art - MORE APPARENT, MORE IMAGES
+const urls=[
+'https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1601025901561-WSANDRXFKUC960QO2KH1/Batman+2020.jpg',
+'https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1601101283413-B7X5K6IU11Q6FGO6ZAJ0/LIBERTY+RED.jpg',
+'https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1602426552552-49U8SRUSDAHFM80NRM8E/Popcorn%2BRed%2BSilkscreen.1998.jpg',
+'https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1705657993318-W87WA6C1DIO6JOUIUWTD/Red+Coffee+Cup1.jpg',
+'https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1619591832686-JFSPJPBC36JNXVQVM0EX/Captain+America.jpg',
+'https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1600937562150-SF1DCXJPKD3SVG8XFH30/Martini+w+Olives+-150HR.jpg',
+'https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1624781088955-XQGT9RKH95MDKTHTUMFB/Kernel+Circles.jpg',
+'https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1623689888164-EQJ388WME7TVFCUKVJ7W/Mona+Lisa.36x36.2021.jpg',
+'https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1609960241011-ULYZM7GN9G3JBJAMD421/Wonder+Woman+Pops%21.jpg',
+'https://images.squarespace-cdn.com/content/v1/5d97941dbea13e3279272c2d/1611028752840-C8UTZNZPD3GX43STA6XH/MLK5.jpg'
+];
+const ha=document.getElementById('hA');
+const pos=[{left:'2%',top:'5%'},{right:'3%',top:'7%'},{left:'1%',bottom:'8%'},{right:'2%',bottom:'14%'},{left:'14%',top:'40%'},{right:'10%',top:'48%'},{left:'7%',bottom:'28%'},{right:'14%',bottom:'30%'},{left:'22%',top:'12%'},{right:'22%',top:'20%'}];
+urls.forEach((u,i)=>{
+const img=document.createElement('img');img.src=u;
+const s=Math.random()*120+100;Object.assign(img.style,pos[i]||{left:Math.random()*80+'%',top:Math.random()*80+'%'});
+img.style.width=s+'px';img.style.borderRadius='4px';
+ha.appendChild(img);
+gsap.to(img,{opacity:.3,duration:1.2,delay:.3+i*.12,ease:'power2.out'});
+gsap.to(img,{y:`+=${Math.random()*45-22}`,x:`+=${Math.random()*30-15}`,rotation:Math.random()*12-6,duration:Math.random()*5+3,repeat:-1,yoyo:true,ease:'sine.inOut',delay:Math.random()*2});
+});
+
+// Hero parallax zoom-out
+gsap.to('.hc',{y:-130,scale:.85,opacity:0,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
+gsap.to('.hero-art',{scale:1.15,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
+
+// HORIZONTAL GALLERY
+const t=document.getElementById('gt'),tw=t.scrollWidth-innerWidth;
+gsap.to(t,{x:-tw,ease:'none',scrollTrigger:{trigger:'.gw',start:'top 15%',end:()=>`+=${tw}`,scrub:1,pin:true,anticipatePin:1}});
+
+// STAR WARS PERSPECTIVE QUOTE
+gsap.fromTo('#swI',{rotateX:45,y:200,opacity:0},{rotateX:0,y:0,opacity:1,scrollTrigger:{trigger:'.sw',start:'top 80%',end:'top 10%',scrub:1}});
+
+// ZOOM-IN on mosaic images as you scroll
+gsap.utils.toArray('.mi').forEach((mi,i)=>{
+gsap.fromTo(mi,{scale:1.3,opacity:0},{scale:1,opacity:1,scrollTrigger:{trigger:mi,start:'top 90%',end:'top 50%',scrub:1}});
+});
+
+// 3D rotate on featured works
+gsap.utils.toArray('.fw').forEach((fw,i)=>{
+gsap.fromTo(fw,{rotateY:i%2===0?8:-8,transformOrigin:i%2===0?'left center':'right center',opacity:.6},{rotateY:0,opacity:1,scrollTrigger:{trigger:fw,start:'top 80%',end:'top 40%',scrub:1}});
+});
+
+// CMU parallax zoom
+gsap.to('.cmu>img',{y:-80,scale:1.1,scrollTrigger:{trigger:'.cmu',start:'top bottom',end:'bottom top',scrub:1}});
+
+// Friends hero parallax
+gsap.to('.friends-hero>img',{y:-60,scale:1.05,scrollTrigger:{trigger:'.friends-hero',start:'top bottom',end:'bottom top',scrub:1}});
+
+// Exhibition hero parallax
+gsap.to('.exh-hero>img',{y:-80,scrollTrigger:{trigger:'.exh-hero',start:'top bottom',end:'bottom top',scrub:1}});
+
+// Bio section slide-in with scale
+gsap.fromTo('.bio-g',{scale:.92,opacity:0},{scale:1,opacity:1,scrollTrigger:{trigger:'.bio',start:'top 70%',end:'top 30%',scrub:1}});
+
+// Featured parallax on images
+gsap.utils.toArray('.fi img').forEach(i=>{gsap.fromTo(i,{y:50},{y:-50,scrollTrigger:{trigger:i.closest('.fw'),start:'top bottom',end:'bottom top',scrub:1}})});
+
+// REVEALS
+document.querySelectorAll('.rv,.rl,.rr,.rs,.rsp').forEach(el=>{
+new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v')})},{threshold:.06,rootMargin:'0px 0px -25px 0px'}).observe(el);
+});
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+</script>
+</body>
+</html>
